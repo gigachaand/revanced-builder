@@ -15,6 +15,7 @@ build-mode = "both"
 included-patches = "'Force hide player buttons background' 'MaterialYou' 'Return YouTube Username'"
 excluded-patches = "'Alternative thumbnails' 'Bypass image region restrictions' 'Hook download actions' 'Change form factor' 'Enable gradient loading screen' 'Hook YouTube Music actions' 'Spoof app version' 'Disable layout updates' 'Translations for YouTube' 'Enable OPUS codec' 'Enable debug logging' 'Disable QUIC protocol' 'Change player flyout menu toggles' 'Spoof streaming data'"
 patcher-args = "-e 'Custom Shorts action buttons' -OiconType=cairo -e 'Custom branding icon for YouTube' -OappIcon=revancify_blue -OchangeSplashIcon=false -OrestoreOldSplashAnimation=false -e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom header for YouTube' -OcustomHeader=custom_branding_icon -e 'Hide shortcuts' -Oshorts=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -e 'Visual preferences icons for YouTube' -OsettingsMenuIcon=revanced -OapplyToAll=false -e 'Overlay buttons' -OiconType=bold -ObottomMargin=true -OwiderButtonsSpace=true -OchangeTopButtons=true -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'SponsorBlock' -OoutlineIcon=true"
+riplib = true
 
 [YT-Music-Extended]
 enabled = false
