@@ -10,11 +10,12 @@ integrations-source = "inotia00/revanced-integrations"
 cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "both"
-included-patches = "'Visual preferences icons' 'Return YouTube Username'"
-excluded-patches = "'Custom Shorts action buttons' 'Custom branding icon for YouTube' 'Custom branding name for YouTube'"
-patcher-args = "-e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
+included-patches = "'Force hide player buttons background' 'MaterialYou' 'Return YouTube Username'"
+excluded-patches = "'Alternative thumbnails' 'Bypass image region restrictions' 'Hook download actions' 'Change form factor' 'Enable gradient loading screen' 'Hook YouTube Music actions' 'Spoof app version' 'Disable layout updates' 'Translations for YouTube' 'Enable OPUS codec' 'Enable debug logging' 'Disable QUIC protocol' 'Change player flyout menu toggles' 'Spoof streaming data'"
+patcher-args = "-e 'Custom Shorts action buttons' -OiconType=cairo -e 'Custom branding icon for YouTube' -OappIcon=revancify_blue -OchangeSplashIcon=false -OrestoreOldSplashAnimation=false -e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom header for YouTube' -OcustomHeader=custom_branding_icon -e 'Hide shortcuts' -Oshorts=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -e 'Visual preferences icons for YouTube' -OsettingsMenuIcon=revanced -OapplyToAll=false -e 'Overlay buttons' -OiconType=bold -ObottomMargin=true -OwiderButtonsSpace=true -OchangeTopButtons=true -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'SponsorBlock' -OoutlineIcon=true"
 
 [YT-Music-Extended]
+enabled = false
 app-name = "YT-Music"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
 patches-source = "inotia00/revanced-patches"
@@ -36,6 +37,7 @@ excluded-patches = "'Change form factor' 'Hide timestamp' 'Open videos fullscree
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 [YT-Music]
+enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
 uptodown-dlurl = "https://youtube-music.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
