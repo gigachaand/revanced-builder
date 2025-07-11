@@ -32,7 +32,8 @@ apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 build-mode = "both"
-patcher-args = "-e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
+excluded-patches = "'Change form factor' 'Hide timestamp' 'Open videos fullscreen' 'Shorts autoplay' 'Spoof app version' 'Alternative thumbnails' 'Bypass image region restrictions' 'Always repeat' 'Enable debugging' 'Spoof device dimensions' 'Spoof video streams' 'Disable HDR video' 'Playback speed'"
+patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 [YT-Music]
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
