@@ -1,11 +1,8 @@
-YouTube-Extended: 20.12.38  
+YouTube: 20.13.41  
 
 Install [ReVanced GmsCore](https://github.com/ReVanced/GmsCore/releases/latest) for non-root YouTube and YouTube Music APKs  
 (Optional) Use [zygisk-detach](https://github.com/j-hc/zygisk-detach/releases/latest) to detach root ReVanced YouTube and YouTube Music from the Play Store
   
-CLI: inotia00/revanced-cli-5.0.1-all.jar  
-Patches: inotia00/patches-5.8.1.rvp  
-[Changelog](https://github.com/inotia00/revanced-patches/releases/tag/v5.8.1)  
-
-Skipped:  
-Patches: ReVanced/patches-5.32.0.rvp    
+CLI: j-hc/revanced-cli-5.0.0-all.jar  
+Patches: ReVanced/patches-5.33.0-dev.13.rvp  
+[Changelog](https://github.com/ReVanced/revanced-patches/releases/tag/v5.33.0-dev.13)  
