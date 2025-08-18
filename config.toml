@@ -2,6 +2,7 @@ enable-magisk-update = true
 parallel-jobs = 1
 
 # ReVanced Extended
+enabled = false
 [YouTube-Extended]
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
@@ -15,6 +16,7 @@ excluded-patches = "'Custom Shorts action buttons' 'Custom branding icon for You
 patcher-args = "-e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 [YT-Music-Extended]
+enabled = false
 app-name = "YT-Music"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
 patches-source = "inotia00/revanced-patches"
@@ -31,10 +33,14 @@ excluded-patches = "'Custom branding icon for YouTube Music' 'Custom branding na
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
+#patches-version = "dev"
+excluded-patches = "'Change form factor' 'Hide timestamp' 'Shorts autoplay' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Spoof video streams'"
+patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=android:color/black"
 build-mode = "both"
 patcher-args = "-e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 [YT-Music]
+enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
 uptodown-dlurl = "https://youtube-music.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
