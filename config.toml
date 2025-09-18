@@ -39,6 +39,14 @@ excluded-patches = "'Change form factor' 'Hide timestamp' 'Shorts autoplay' 'Spo
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "both"
 
+# Instagram
+[Instagram]
+enabled = false
+apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
+included-patches = "'Hide Stories from Home'"
+excluded-patches = "'Hide ads'"
+patcher-args = "-e 'Hide navigation buttons' -OhideReels=true -OhideCreate=true"
+
 [YT-Music]
 enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
