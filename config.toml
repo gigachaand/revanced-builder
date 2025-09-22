@@ -31,6 +31,7 @@ patcher-args = "-e 'Dark theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 # ReVanced
 [YouTube]
+enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
@@ -45,7 +46,7 @@ enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
 cli-source = "revanced/revanced-cli"
 #apkmirror-dpi = "360-480dpi"                            
-arch = "arm64-v8a"                                         
+#arch = "arm64-v8a"                                         
 riplib = true
 included-patches = "'Limit feed to followed profiles' 'Hide explore feed' 'Hide Stories from Home'"
 patcher-args = "-e 'Hide navigation buttons' -OhideReels=true -OhideCreate=true"
