@@ -43,8 +43,8 @@ build-mode = "both"
 [Instagram]
 enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
-#apkmirror-dpi = "360-480dpi"                               # used to select apk variant from apkmirror. default: nodpi
-arch = "arm64-v8a"                                         # 'arm64-v8a', 'arm-v7a', 'all', 'both'. 'both' downloads both arm64-v8a and arm-v7a. default: all
+#apkmirror-dpi = "360-480dpi"                            
+arch = "arm64-v8a"                                         
 riplib = true
 included-patches = "'Limit feed to followed profiles' 'Hide explore feed' 'Hide Stories from Home'"
 patcher-args = "-e 'Hide navigation buttons' -OhideReels=true -OhideCreate=true"
