@@ -43,6 +43,7 @@ build-mode = "both"
 [Instagram]
 enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
+cli-source = "revanced/revanced-cli"
 #apkmirror-dpi = "360-480dpi"                            
 arch = "arm64-v8a"                                         
 riplib = true
