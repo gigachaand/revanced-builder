@@ -31,7 +31,7 @@ patcher-args = "-e 'Dark theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 # ReVanced
 [YouTube]
-enabled = false
+enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
@@ -39,17 +39,6 @@ archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.y
 excluded-patches = "'Change form factor' 'Hide timestamp' 'Shorts autoplay' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Spoof video streams'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "both"
-
-# Instagram
-[Instagram]
-enabled = true
-apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
-cli-source = "revanced/revanced-cli"
-#apkmirror-dpi = "360-480dpi"                            
-#arch = "arm64-v8a"                                         
-riplib = true
-included-patches = "'Limit feed to followed profiles' 'Hide explore feed' 'Hide Stories from Home'"
-patcher-args = "-e 'Hide navigation buttons' -OhideReels=true -OhideCreate=true"
 
 [YT-Music]
 enabled = false
