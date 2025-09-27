@@ -35,7 +35,7 @@ enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
-patches-version = "dev"
+#patches-version = "dev"
 excluded-patches = "'Change form factor' 'Hide timestamp' 'Shorts autoplay' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Spoof video streams'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "module"
