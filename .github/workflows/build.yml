@@ -117,7 +117,7 @@ jobs:
         run: |
           cd build || { echo "build folder not found"; exit 1; }
 
-          TG_CHAT="@PeterSpaceXiaomi"
+          TG_CHAT="@n0_things114"
           NL=$'\n'
           APKS=""
           MODULES=""
