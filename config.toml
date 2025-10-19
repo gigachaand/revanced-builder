@@ -1,5 +1,6 @@
 enable-magisk-update = true
 parallel-jobs = 1
+remove-rv-integrations-checks = true
 
 # ReVanced Extended
 [YouTube-Extended]
