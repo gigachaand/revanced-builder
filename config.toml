@@ -12,7 +12,7 @@ cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "both"
 included-patches = "'Return YouTube Username'"
-excluded-patches = "'Custom Shorts action buttons' 'Custom branding icon for YouTube' 'Custom branding name for YouTube'"
+excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for YouTube'"
 patcher-args = "-e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 [YT-Music-Extended]
