@@ -4,7 +4,7 @@ remove-rv-integrations-checks = true
 
 # ReVanced Extended
 [YouTube-Extended]
-enabled = true
+enabled = false
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "inotia00/revanced-patches"
@@ -32,7 +32,7 @@ patcher-args = "-e 'Dark theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 # ReVanced
 [YouTube]
-enabled = true
+enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
@@ -53,6 +53,17 @@ uptodown-dlurl = "https://youtube-music.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
 arch = "arm64-v8a"
 build-mode = "both"
+
+[Instagram]
+enabled = true
+apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
+cli-source = "ReVanced/revanced-cli"
+version = "latest"
+arch = "arm64-v8a"
+apkmirror-dpi = "360-480dpi"
+riplib = true
+included-patches = "'Limit feed to followed profiles' 'Hide explore feed' 'Hide Stories from Home' 'Hide suggested content' 'Enable developer menu' 'Open links externally' 'Change link sharing domain'"
+patcher-args = "-e 'Hide navigation buttons' -OhideReels=true -OhideCreate=true"
 
 # ReVanced Extended by anddea
 [YouTube-anddea]
