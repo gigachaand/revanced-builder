@@ -1,0 +1,19 @@
+[
+  {
+    "patchName": "Translations for YouTube",
+    "options": [
+      {
+        "key": "customTranslations",
+        "value": ""
+      },
+      {
+        "key": "selectedTranslations",
+        "value": ""
+      },
+      {
+        "key": "selectedStringResources",
+        "value": ""
+      }
+    ]
+  }
+]
