@@ -54,9 +54,9 @@ fi
 
 mkdir -p ${MODULE_TEMPLATE_DIR}/bin/arm64 ${MODULE_TEMPLATE_DIR}/bin/arm ${MODULE_TEMPLATE_DIR}/bin/x86 ${MODULE_TEMPLATE_DIR}/bin/x64
 gh_dl "${MODULE_TEMPLATE_DIR}/bin/arm64/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-arm64-v8a"
-#gh_dl "${MODULE_TEMPLATE_DIR}/bin/arm/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-armeabi-v7a"
-#gh_dl "${MODULE_TEMPLATE_DIR}/bin/x86/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-x86"
-#gh_dl "${MODULE_TEMPLATE_DIR}/bin/x64/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-x86_64"
+gh_dl "${MODULE_TEMPLATE_DIR}/bin/arm/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-armeabi-v7a"
+gh_dl "${MODULE_TEMPLATE_DIR}/bin/x86/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-x86"
+gh_dl "${MODULE_TEMPLATE_DIR}/bin/x64/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-x86_64"
 
 declare -A cliriplib
 idx=0
