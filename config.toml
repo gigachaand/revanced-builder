@@ -46,7 +46,7 @@ patcher-args = "--rip-lib -e 'Hide Shorts components' -OhideShortsAppShortcut=tr
 build-mode = "module"
 #apkmirror-dpi = "480dpi"
 riplib = true
-arch = "arm64-v8a"
+#arch = "arm64-v8a"
 
 [YT-Music]
 enabled = false
