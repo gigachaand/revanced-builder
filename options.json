@@ -4,15 +4,15 @@
     "options": [
       {
         "key": "customTranslations",
-        "value": ""
+        "value": "null"
       },
       {
         "key": "selectedTranslations",
-        "value": ""
+        "value": "null"
       },
       {
         "key": "selectedStringResources",
-        "value": ""
+        "value": "null"
       }
     ]
   }
