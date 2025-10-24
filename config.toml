@@ -44,7 +44,7 @@ archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.y
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Spoof video streams'"
 patcher-args = "--rip-lib -e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "module"
-apkmirror-dpi = "480dpi"
+#apkmirror-dpi = "480dpi"
 riplib = true
 arch = "arm64-v8a"
 
