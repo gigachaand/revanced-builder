@@ -42,7 +42,7 @@ archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.y
 #cli-version = "dev"
 #patches-version = "dev"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Spoof video streams'"
-patcher-args = "--rip-lib' -e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
+patcher-args = "--rip-lib -e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "module"
 apkmirror-dpi = "120-640dpi"
 riplib = true
