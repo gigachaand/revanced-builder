@@ -40,7 +40,7 @@ archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.y
 #cli-source = "ReVanced/revanced-cli"
 #cli-version = "dev"
 #patches-version = "dev"
-version = "20.21.35"
+version = "20.15.38"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Spoof video streams'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "module"
