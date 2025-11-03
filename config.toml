@@ -45,8 +45,8 @@ excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbn
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "module"
 apkmirror-dpi = "120-6400dpi"
-arch = "all"
-#riplib = true
+#arch = "all"
+riplib = true
 
 [YT-Music]
 enabled = false
