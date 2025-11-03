@@ -37,7 +37,7 @@ enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
-#cli-source = "ReVanced/revanced-cli"
+cli-source = "zjns/revanced-cli"
 #cli-version = "dev"
 #patches-version = "dev"
 version = "20.15.40"
@@ -46,7 +46,7 @@ patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideS
 build-mode = "module"
 #apkmirror-dpi = "120-6400dpi"
 #arch = "all"
-#riplib = true
+riplib = true
 
 [YT-Music]
 enabled = false
