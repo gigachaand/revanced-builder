@@ -37,7 +37,7 @@ enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
-cli-source = "inotia00/revanced-cli"
+#cli-source = "ReVanced/revanced-cli"
 #cli-version = "dev"
 #patches-version = "dev"
 version = "20.15.40"
@@ -55,16 +55,6 @@ uptodown-dlurl = "https://youtube-music.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
 arch = "arm64-v8a"
 build-mode = "both"
-
-[GooglePhotos]
-enabled = false
-build-mode = "both"
-arch = "arm64-v8a"
-apkmirror-dpi = "120-640dpi"
-version = "latest"
-apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/photos/"
-uptodown-dlurl = "https://google-photos.en.uptodown.com/android"
-#archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.photos"
 
 # ReVanced Extended by anddea
 [YouTube-anddea]
