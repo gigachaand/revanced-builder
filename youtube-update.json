@@ -1,6 +1,6 @@
 {
-  "version": "20.15.40 (patches 5.45.0)",
-  "versionCode": 14,
-  "zipUrl": "https://github.com/gigachaand/revanced-builder/releases/download/14/youtube-revanced-magisk-v20.15.40-all.zip",
+  "version": "20.15.40 (patches 5.46.0)",
+  "versionCode": 13,
+  "zipUrl": "https://github.com/gigachaand/revanced-builder/releases/download/13/youtube-revanced-magisk-v20.15.40-all.zip",
   "changelog": "https://raw.githubusercontent.com/gigachaand/revanced-builder/update/build.md"
 }
