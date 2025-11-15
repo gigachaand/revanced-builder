@@ -4,13 +4,14 @@ remove-rv-integrations-checks = true
 
 # ReVanced Extended
 [YouTube-Extended]
+enabled = true
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 patches-source = "inotia00/revanced-patches"
 #integrations-source = "inotia00/revanced-integrations"
 cli-source = "inotia00/revanced-cli"
-patches-version = "dev"
+#patches-version = "dev"
 rv-brand = "ReVanced Extended"
 build-mode = "apk"
 included-patches = "'Hide Shorts dimming' 'Force hide player buttons background' 'MaterialYou'"
