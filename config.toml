@@ -14,7 +14,7 @@ patches-version = "dev"
 rv-brand = "ReVanced Extended"
 build-mode = "apk"
 included-patches = "'Hide Shorts dimming' 'Force hide player buttons background' 'MaterialYou'"
-excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradient loading screen' 'Translations for YouTube' 'Spoof app version' 'Disable layout updates' 'Enable debug logging' 'Disable QUIC protocol'"
+excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradient loading screen' 'Translations for YouTube' 'Spoof app version' 'Disable layout updates' 'Enable debug logging' 'Disable QUIC protocol' 'Disable sign in to TV popup'"
 patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom branding icon for YouTube' -OchangeSplashIcon=false -OrestoreOldSplashAnimation=true -e 'Custom header for YouTube' -OcustomHeader=hara -e 'Custom Shorts action buttons' -OiconType=cairo -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -OlightThemeBackgroundColor=@android:color/white -e 'Visual preferences icons for YouTube' -OapplyToAll=true -OsettingsMenuIcon=revanced -e 'Overlay buttons' -OiconType=bold -OwiderButtonsSpace=true -OchangeTopButtons=true -ObottomMargin=3.5dip -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'Hide shortcuts' -Oshorts=true"
 
 [YT-Music-Extended]
