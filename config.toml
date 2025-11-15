@@ -4,9 +4,8 @@ remove-rv-integrations-checks = true
 
 # ReVanced Extended
 [YouTube-Extended]
-enabled = true
 app-name = "YouTube"
-#apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
+apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 patches-source = "inotia00/revanced-patches"
