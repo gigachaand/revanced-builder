@@ -4,7 +4,7 @@ remove-rv-integrations-checks = true
 
 # ReVanced Extended
 [YouTube-Extended]
-enabled = false
+enabled = true
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
@@ -59,7 +59,7 @@ build-mode = "both"
 
 # ReVanced Extended by anddea
 [YouTube-anddea]
-enabled = false
+enabled = true
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "anddea/revanced-patches"
