@@ -34,12 +34,12 @@ patcher-args = "-e 'Dark theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 # ReVanced
 [YouTube]
-enabled = true
+enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 #archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 patches-source = "LisoUseInAIKyrios/revanced-patches"
-#cli-source = "LisoUseInAIKyrios/revanced-cli"
+cli-source = "LisoUseInAIKyrios/revanced-cli"
 #cli-version = "dev"
 #patches-version = "dev"
 version = "20.21.37"
