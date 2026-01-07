@@ -14,13 +14,13 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: "zulu"
           java-version: "17"
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           submodules: true
@@ -100,19 +100,18 @@ jobs:
 
           find . -name "*-update.json" | grep . || : >dummy-update.json
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           branch: update
           skip_checkout: true
           file_pattern: build.md *-update.json
           commit_message: Bump version ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           commit_options: '--signoff'
-          commit_author: peternmuller <pm563838@gmail.com>
+          commit_author: gigachaand <arunmondal9286@gmail.com>
 
       - name: Report to Telegram
         env:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
-          TG_CHAT: ${{ secrets.TG_CHAT }}
         if: env.TG_TOKEN != null
         run: |
           cd build || { echo "build folder not found"; exit 1; }
@@ -144,10 +143,10 @@ jobs:
           *APKs:*
           ${APKS}
 
-          *By @gigachaand*
+          *By @peternoz*
 
           *🌟 Check out my builder source:*
-          https://github.com/gigachaand/revanced-builder
+          https://github.com/peternmuller/revanced-morphe-builder
           "
           echo "'$MSG'"
           MSG=${MSG:0:9450}
