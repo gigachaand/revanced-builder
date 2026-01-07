@@ -15,7 +15,7 @@ cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "apk"
 included-patches = "'Hide Shorts dimming' 'Force hide player buttons background' 'MaterialYou'"
-excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradient loading screen' 'Translations for YouTube' 'Spoof app version' 'Disable layout updates' 'Enable debug logging' 'Disable QUIC protocol' 'Disable sign in to TV popup' 'Hide timestamp' 'Check watch history domain name resolution'"
+excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradient loading screen' 'Translations for YouTube' 'Spoof app version' 'Disable layout updates' 'Enable debug logging' 'Disable QUIC protocol' 'Disable sign in to TV popup' 'Spoof watch history'"
 patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom branding icon for YouTube' -OchangeSplashIcon=false -OrestoreOldSplashAnimation=true -e 'Custom header for YouTube' -OcustomHeader=hara -e 'Custom Shorts action buttons' -OiconType=cairo -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -OlightThemeBackgroundColor=@android:color/white -e 'Visual preferences icons for YouTube' -OapplyToAll=true -OsettingsMenuIcon=revanced -e 'Overlay buttons' -OiconType=bold -OwiderButtonsSpace=true -OchangeTopButtons=true -ObottomMargin=3.5dip -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'Hide shortcuts' -Oshorts=true"
 
 # ReVanced
@@ -36,22 +36,23 @@ build-mode = "module"
 
 # ReVanced Extended by anddea
 [YouTube-anddea]
-enabled = false
+enabled = true
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "anddea/revanced-patches"
 integrations-source = "anddea/revanced-integrations"
 cli-source = "inotia00/revanced-cli"
-patches-version = "dev"
+#patches-version = "dev"
 rv-brand = "ReVanced anddea"
 version = "20.21.37"
 build-mode = "apk"
-excluded-patches = "'Custom Shorts action buttons' 'Force player buttons background'"
-patcher-args = "-e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
+included-patches = "'Hide Shorts dimming' 'Force hide player buttons background' 'MaterialYou'"
+excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradient loading screen' 'Translations for YouTube' 'Spoof app version' 'Disable layout updates' 'Enable debug logging' 'Disable QUIC protocol' 'Disable sign in to TV popup' 'Spoof watch history'"
+patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom branding icon for YouTube' -OcustomIcon=xisr_yellow -OchangeSplashIcon=false -OrestoreOldSplashAnimation=true -e 'Custom header for YouTube' -OcustomHeader=hara -e 'Custom Shorts action buttons' -OiconType=cairo -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -OlightThemeBackgroundColor=@android:color/white -e 'Visual preferences icons for YouTube' -OapplyToAll=true -OsettingsMenuIcon=revanced -e 'Overlay buttons' -OiconType=bold -OwiderButtonsSpace=true -OchangeTopButtons=true -ObottomMargin=3.5dip -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'Hide shortcuts' -Oshorts=true"
 
 # Morphe
 [YouTube-Morphe]
-enabled = true
+enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "MorpheApp/morphe-patches"
 cli-source = "MorpheApp/morphe-cli"
