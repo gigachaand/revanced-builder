@@ -29,33 +29,33 @@ if [ ! -f ~/.rvmm_"$(date '+%Y%m')" ]; then
 	yes "" | pkg update -y && pkg upgrade -y && pkg install -y git curl jq openjdk-17 zip
 	: >~/.rvmm_"$(date '+%Y%m')"
 fi
-mkdir -p /sdcard/Download/revanced-builder/
+mkdir -p /sdcard/Download/revanced-morphe-builder/
 
-if [ -d revanced-builder ] || [ -f config.toml ]; then
-	if [ -d revanced-builder ]; then cd revanced-builder; fi
-	pr "Checking for revanced-builder updates"
+if [ -d revanced-morphe-builder ] || [ -f config.toml ]; then
+	if [ -d revanced-morphe-builder ]; then cd revanced-morphe-builder; fi
+	pr "Checking for revanced-morphe-builder updates"
 	git fetch
 	if git status | grep -q 'is behind\|fatal'; then
-		pr "revanced-builder is not synced with upstream."
-		pr "Cloning revanced-builder. config.toml will be preserved."
+		pr "revanced-morphe-builder is not synced with upstream."
+		pr "Cloning revanced-morphe-builder. config.toml will be preserved."
 		cd ..
-		cp -f revanced-builder/config.toml .
-		rm -rf revanced-builder
-		git clone https://github.com/gigachaand/revanced-builder --recurse --depth 1
-		mv -f config.toml revanced-builder/config.toml
-		cd revanced-builder
+		cp -f revanced-morphe-builder/config.toml .
+		rm -rf revanced-morphe-builder
+		git clone https://github.com/peternmuller/revanced-morphe-builder --recurse --depth 1
+		mv -f config.toml revanced-morphe-builder/config.toml
+		cd revanced-morphe-builder
 	fi
 else
-	pr "Cloning revanced-builder."
-	git clone https://github.com/gigachaand/revanced-builder --depth 1
-	cd revanced-builder
+	pr "Cloning revanced-morphe-builder."
+	git clone https://github.com/peternmuller/revanced-morphe-builder --depth 1
+	cd revanced-morphe-builder
 	sed -i '/^enabled.*/d; /^\[.*\]/a enabled = false' config.toml
-	grep -q 'revanced-builder' ~/.gitconfig 2>/dev/null ||
-		git config --global --add safe.directory ~/revanced-builder
+	grep -q 'revanced-morphe-builder' ~/.gitconfig 2>/dev/null ||
+		git config --global --add safe.directory ~/revanced-morphe-builder
 fi
 
-[ -f ~/storage/downloads/revanced-builder/config.toml ] ||
-	cp config.toml ~/storage/downloads/revanced-builder/config.toml
+[ -f ~/storage/downloads/revanced-morphe-builder/config.toml ] ||
+	cp config.toml ~/storage/downloads/revanced-morphe-builder/config.toml
 
 if ask "Open rvmm-config-gen to generate a config?"; then
 	am start -a android.intent.action.VIEW -d https://j-hc.github.io/rvmm-config-gen/
@@ -63,11 +63,11 @@ fi
 printf "\n"
 until
 	if ask "Open 'config.toml' to configure builds?\nAll are disabled by default, you will need to enable at first time building"; then
-		am start -a android.intent.action.VIEW -d file:///sdcard/Download/revanced-builder/config.toml -t text/plain
+		am start -a android.intent.action.VIEW -d file:///sdcard/Download/revanced-morphe-builder/config.toml -t text/plain
 	fi
 	ask "Setup is done. Do you want to start building?"
 do :; done
-cp -f ~/storage/downloads/revanced-builder/config.toml config.toml
+cp -f ~/storage/downloads/revanced-morphe-builder/config.toml config.toml
 
 ./build.sh
 
@@ -78,10 +78,10 @@ for op in *; do
 		pr "glob fail"
 		exit 1
 	}
-	mv -f "${PWD}/${op}" ~/storage/downloads/revanced-builder/"${op}"
+	mv -f "${PWD}/${op}" ~/storage/downloads/revanced-morphe-builder/"${op}"
 done
 
-pr "Outputs are available in /sdcard/Download/revanced-builder folder"
-am start -a android.intent.action.VIEW -d file:///sdcard/Download/revanced-builder -t resource/folder
+pr "Outputs are available in /sdcard/Download/revanced-morphe-builder folder"
+am start -a android.intent.action.VIEW -d file:///sdcard/Download/revanced-morphe-builder -t resource/folder
 sleep 2
-am start -a android.intent.action.VIEW -d file:///sdcard/Download/revanced-builder -t resource/folder
+am start -a android.intent.action.VIEW -d file:///sdcard/Download/revanced-morphe-builder -t resource/folder
