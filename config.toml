@@ -15,22 +15,8 @@ cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "apk"
 included-patches = "'Hide Shorts dimming' 'Force hide player buttons background' 'MaterialYou'"
-excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradient loading screen' 'Translations for YouTube' 'Spoof app version' 'Disable layout updates' 'Enable debug logging' 'Disable QUIC protocol' 'Disable sign in to TV popup'"
+excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradient loading screen' 'Translations for YouTube' 'Spoof app version' 'Disable layout updates' 'Enable debug logging' 'Disable QUIC protocol' 'Disable sign in to TV popup' 'Hide timestamp' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom branding icon for YouTube' -OchangeSplashIcon=false -OrestoreOldSplashAnimation=true -e 'Custom header for YouTube' -OcustomHeader=hara -e 'Custom Shorts action buttons' -OiconType=cairo -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -OlightThemeBackgroundColor=@android:color/white -e 'Visual preferences icons for YouTube' -OapplyToAll=true -OsettingsMenuIcon=revanced -e 'Overlay buttons' -OiconType=bold -OwiderButtonsSpace=true -OchangeTopButtons=true -ObottomMargin=3.5dip -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'Hide shortcuts' -Oshorts=true"
-
-[YT-Music-Extended]
-enabled = false
-app-name = "YT-Music"
-apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
-patches-source = "inotia00/revanced-patches"
-integrations-source = "inotia00/revanced-integrations"
-cli-source = "inotia00/revanced-cli"
-rv-brand = "ReVanced Extended"
-arch = "arm64-v8a"
-build-mode = "both"
-included-patches = "'Disable music video in album' 'Hide player overlay filter' 'Return YouTube Username'"
-excluded-patches = "'Custom branding icon for YouTube Music' 'Custom branding name for YouTube Music'"
-patcher-args = "-e 'Dark theme' -OdarkThemeBackgroundColor=@android:color/black"
 
 # ReVanced
 [YouTube]
@@ -41,20 +27,12 @@ uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 #cli-version = "dev"
 #patches-version = "dev"
 version = "20.15.40"
-excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams'"
+excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Hide timestamp' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "module"
 #apkmirror-dpi = "120-640dpi"
 #arch = "all"
 #riplib = true
-
-[YT-Music]
-enabled = false
-apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
-uptodown-dlurl = "https://youtube-music.en.uptodown.com/android"
-archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
-arch = "arm64-v8a"
-build-mode = "both"
 
 # ReVanced Extended by anddea
 [YouTube-anddea]
@@ -71,15 +49,15 @@ build-mode = "apk"
 excluded-patches = "'Custom Shorts action buttons' 'Force player buttons background'"
 patcher-args = "-e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 
-[YT-Music-anddea]
-enabled = false
-app-name = "YT-Music"
-apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
-patches-source = "anddea/revanced-patches"
-integrations-source = "anddea/revanced-integrations"
-cli-source = "inotia00/revanced-cli"
-rv-brand = "ReVanced anddea"
-arch = "arm64-v8a"
+# Morphe
+[YouTube-Morphe]
+enabled = true
+apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
+patches-source = "MorpheApp/morphe-patches"
+cli-source = "MorpheApp/morphe-cli"
+cli-version = "dev"
+rv-brand = "Divya"
+excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Hide timestamp' 'Check watch history domain name resolution'"
+patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "both"
-included-patches = "'Disable music video in album' 'Hide player overlay filter'"
-patcher-args = "-e 'Dark theme' -OdarkThemeBackgroundColor=@android:color/black"
+riplib = true
