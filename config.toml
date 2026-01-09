@@ -10,7 +10,8 @@ apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 patches-source = "inotia00/revanced-patches"
 #integrations-source = "inotia00/revanced-integrations"
-cli-source = "inotia00/revanced-cli"
+cli-source = "Graywizard888/Enhancify-cli-v21"
+cli-version = "dev"
 #patches-version = "dev"
 rv-brand = "ReVanced Extended"
 build-mode = "apk"
@@ -24,7 +25,8 @@ enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 #archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
-#cli-version = "dev"
+cli-source = "Graywizard888/Enhancify-cli-v21"
+cli-version = "dev"
 #patches-version = "dev"
 version = "20.15.40"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Hide timestamp' 'Check watch history domain name resolution'"
@@ -41,7 +43,8 @@ app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "anddea/revanced-patches"
 integrations-source = "anddea/revanced-integrations"
-cli-source = "inotia00/revanced-cli"
+cli-source = "Graywizard888/Enhancify-cli-v21"
+cli-version = "dev"
 #patches-version = "dev"
 rv-brand = "ReVanced anddea"
 version = "20.21.37"
@@ -51,7 +54,7 @@ excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradie
 patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom branding icon for YouTube' -OcustomIcon=xisr_yellow -OchangeSplashIcon=false -OrestoreOldSplashAnimation=true -e 'Custom header for YouTube' -OcustomHeader=hara -e 'Custom Shorts action buttons' -OiconType=cairo -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -OlightThemeBackgroundColor=@android:color/white -e 'Visual preferences icons for YouTube' -OapplyToAll=true -OsettingsMenuIcon=revanced -e 'Overlay buttons' -OiconType=bold -OwiderButtonsSpace=true -OchangeTopButtons=true -ObottomMargin=3.5dip -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'Hide shortcuts' -Oshorts=true"
 
 # Morphe
-[YouTube-Divya]
+[YouTube-Divyaa]
 enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "MorpheApp/morphe-patches"
