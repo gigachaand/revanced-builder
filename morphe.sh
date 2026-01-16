@@ -19,8 +19,8 @@ set_prebuilts
 
 vtf() { if ! isoneof "${1}" "true" "false"; then abort "ERROR: '${1}' is not a valid option for '${2}': only true or false is allowed"; fi; }
 
-# -- Main config --
-toml_prep "${1:-config.toml}" || abort "could not find config file '${1:-config.toml}'\n\tUsage: $0 <config.toml>"
+toml_prep "${1:-morphe.toml}" || abort "could not find config file '${1:-morphe.toml}'"
+
 main_config_t=$(toml_get_table_main)
 COMPRESSION_LEVEL=$(toml_get "$main_config_t" compression-level) || COMPRESSION_LEVEL="9"
 if ! PARALLEL_JOBS=$(toml_get "$main_config_t" parallel-jobs); then
@@ -84,16 +84,9 @@ for table_name in $(toml_get_table_names); do
 	read -r cli_jar patches_jar <<<"$PREBUILTS"
 	app_args[cli]=$cli_jar
 	app_args[ptjar]=$patches_jar
-	if [[ -v cliriplib[${app_args[cli]}] ]]; then app_args[riplib]=${cliriplib[${app_args[cli]}]}; else
-		if [[ $(java -jar "${app_args[cli]}" patch 2>&1) == *rip-lib* ]]; then
-			cliriplib[${app_args[cli]}]=true
-			app_args[riplib]=true
-		else
-			cliriplib[${app_args[cli]}]=false
-			app_args[riplib]=false
-		fi
-	fi
-	if [ "${app_args[riplib]}" = "true" ] && [ "$(toml_get "$t" riplib)" = "false" ]; then app_args[riplib]=false; fi
+	
+	app_args[riplib]=false
+
 	app_args[rv_brand]=$(toml_get "$t" rv-brand) || app_args[rv_brand]=$DEF_RV_BRAND
 
 	app_args[excluded_patches]=$(toml_get "$t" excluded-patches) || app_args[excluded_patches]=""
@@ -165,33 +158,21 @@ done
 wait
 rm -rf temp/tmp.*
 
-# --- FIXED: Manual RipLib for Morphe Builds ---
 if [ -d "$BUILD_DIR" ]; then
     for apk in "$BUILD_DIR"/*.apk; do
         [ -f "$apk" ] || continue
-        # Only modify if it's a specific arch build, ignoring universals
-        if [[ "$apk" == *"-arm64-v8a"* ]]; then
-            # Strip everything except arm64
-            zip -q -d "$apk" "lib/x86/*" "lib/x86_64/*" "lib/armeabi-v7a/*" || true
-        elif [[ "$apk" == *"-armeabi-v7a"* ]]; then
-            zip -q -d "$apk" "lib/x86/*" "lib/x86_64/*" "lib/arm64-v8a/*" || true
-        elif [[ "$apk" == *"-x86"* ]]; then
-             zip -q -d "$apk" "lib/arm64-v8a/*" "lib/armeabi-v7a/*" || true
-        fi
+        
+        # Only keep arm64-v8a: Remove x86, x64, armv7, armeabi
+        zip -q -d "$apk" "lib/x86/*" "lib/x86_64/*" "lib/armeabi-v7a/*" "lib/armeabi/*" || true
+        
+        # Determine correct keystore path
+        KS_PATH="revanced-magisk/keystore"
+        if [ -f "keystore" ]; then KS_PATH="keystore"; fi
+        
+        # Re-sign with local tools
+        java -jar bin/apksigner.jar sign --ks "$KS_PATH" --ks-pass pass:12345678 --key-pass pass:12345678 --out "$apk" "$apk"
     done
 fi
-# ---------------------------------------------
 
 if [ -z "$(ls -A1 "${BUILD_DIR}")" ]; then abort "All builds failed."; fi
-
-log "\nInstall [ReVanced GmsCore](https://github.com/ReVanced/GmsCore/releases/latest) or [Morphe MicroG-RE](https://github.com/MorpheApp/MicroG-RE) for non-root YouTube and YouTube Music APKs"
-log "(Optional) Use [zygisk-detach](https://github.com/j-hc/zygisk-detach/releases/latest) to detach root ReVanced/Morphe YouTube and YouTube Music from the Play Store\n"
-log "$(cat "$TEMP_DIR"/*/changelog.md)"
-
-SKIPPED=$(cat "$TEMP_DIR"/skipped 2>/dev/null || :)
-if [ -n "$SKIPPED" ]; then
-	log "\nSkipped:"
-	log "$SKIPPED"
-fi
-
 pr "Done"
