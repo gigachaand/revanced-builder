@@ -1,0 +1,43 @@
+name: Morphe Builder
+permissions: write-all
+
+on:
+  workflow_dispatch:
+    inputs:
+      config-file:
+        description: 'Config file to use'
+        required: false
+        default: 'options.json'
+
+jobs:
+  build:
+    name: Build Morphe
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq zip curl
+
+      - name: Run Morphe Build Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          chmod +x morphe.sh
+          ./morphe.sh "${{ inputs.config-file }}"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: Morphe-Builds
+          path: build/
