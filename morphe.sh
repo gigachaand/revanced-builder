@@ -17,10 +17,9 @@ zip --version >/dev/null || abort "\`zip\` is not installed. install it with 'ap
 
 set_prebuilts
 
-gh_dl "uber-apk-signer.jar" "https://github.com/patrickfav/uber-apk-signer/releases/latest/download/uber-apk-signer.jar"
-
 vtf() { if ! isoneof "${1}" "true" "false"; then abort "ERROR: '${1}' is not a valid option for '${2}': only true or false is allowed"; fi; }
 
+# -- Main config --
 toml_prep "${1:-config.toml}" || abort "could not find config file '${1:-config.toml}'\n\tUsage: $0 <config.toml>"
 main_config_t=$(toml_get_table_main)
 COMPRESSION_LEVEL=$(toml_get "$main_config_t" compression-level) || COMPRESSION_LEVEL="9"
@@ -85,9 +84,16 @@ for table_name in $(toml_get_table_names); do
 	read -r cli_jar patches_jar <<<"$PREBUILTS"
 	app_args[cli]=$cli_jar
 	app_args[ptjar]=$patches_jar
-	
-	app_args[riplib]=false
-
+	if [[ -v cliriplib[${app_args[cli]}] ]]; then app_args[riplib]=${cliriplib[${app_args[cli]}]}; else
+		if [[ $(java -jar "${app_args[cli]}" patch 2>&1) == *rip-lib* ]]; then
+			cliriplib[${app_args[cli]}]=true
+			app_args[riplib]=true
+		else
+			cliriplib[${app_args[cli]}]=false
+			app_args[riplib]=false
+		fi
+	fi
+	if [ "${app_args[riplib]}" = "true" ] && [ "$(toml_get "$t" riplib)" = "false" ]; then app_args[riplib]=false; fi
 	app_args[rv_brand]=$(toml_get "$t" rv-brand) || app_args[rv_brand]=$DEF_RV_BRAND
 
 	app_args[excluded_patches]=$(toml_get "$t" excluded-patches) || app_args[excluded_patches]=""
@@ -159,24 +165,22 @@ done
 wait
 rm -rf temp/tmp.*
 
+# --- FIXED: Manual RipLib for Morphe Builds ---
 if [ -d "$BUILD_DIR" ]; then
     for apk in "$BUILD_DIR"/*.apk; do
         [ -f "$apk" ] || continue
-        
-        NEEDS_RESIGN=false
+        # Only modify if it's a specific arch build, ignoring universals
         if [[ "$apk" == *"-arm64-v8a"* ]]; then
-            zip -q -d "$apk" "lib/x86/*" "lib/x86_64/*" "lib/armeabi-v7a/*" && NEEDS_RESIGN=true || true
+            # Strip everything except arm64
+            zip -q -d "$apk" "lib/x86/*" "lib/x86_64/*" "lib/armeabi-v7a/*" || true
         elif [[ "$apk" == *"-armeabi-v7a"* ]]; then
-            zip -q -d "$apk" "lib/x86/*" "lib/x86_64/*" "lib/arm64-v8a/*" && NEEDS_RESIGN=true || true
+            zip -q -d "$apk" "lib/x86/*" "lib/x86_64/*" "lib/arm64-v8a/*" || true
         elif [[ "$apk" == *"-x86"* ]]; then
-             zip -q -d "$apk" "lib/arm64-v8a/*" "lib/armeabi-v7a/*" && NEEDS_RESIGN=true || true
-        fi
-        
-        if [ "$NEEDS_RESIGN" = true ]; then
-            java -jar uber-apk-signer.jar --apks "$apk" --overwrite
+             zip -q -d "$apk" "lib/arm64-v8a/*" "lib/armeabi-v7a/*" || true
         fi
     done
 fi
+# ---------------------------------------------
 
 if [ -z "$(ls -A1 "${BUILD_DIR}")" ]; then abort "All builds failed."; fi
 
