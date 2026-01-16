@@ -7,7 +7,7 @@ on:
       config-file:
         description: 'Config file to use'
         required: false
-        default: 'options.json'
+        default: 'morphe.toml'
 
 jobs:
   build:
