@@ -71,7 +71,6 @@ build-mode = "module"
 [Instagram]
 apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
 cli-source = "ReVanced/revanced-cli"
-patches-source = "ReVanced/revanced-patches
 version = "410.1.0.63.71"
-included-patches = "'Limit feed to followed profiles' 'Hide highlights tray' 'Anonymous story viewing' 'Hide explore feed' 'Hide suggested content' 'Open links externally' 'Change link sharing domain' 'Disable story auto flipping'"
-patcher-args = "-e 'Hide navigation buttons' -OhideReels=true -OhideCreate=true"
+patches-source = "ReVanced/revanced-patches
+included-patches'Limit feed to followed profiles' 'Hide highlights tray' 'Anonymous story viewing' 'Hide explore feed' 'Hide suggested content' 'Open links externally' 'Change link sharing domain' 'Disable story auto flipflipping'tcher-args = "-e 'Hide navigation buttons' -OhideReels=true -OhideCreate=true"
