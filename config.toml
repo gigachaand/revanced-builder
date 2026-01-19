@@ -66,4 +66,4 @@ version = "21.02.35"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Hide timestamp' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "apk"
-#riplib = true
+riplib = true
