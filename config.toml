@@ -4,7 +4,7 @@ remove-rv-integrations-checks = true
 
 # ReVanced Extended
 [YouTube-Extended]
-enabled = false
+enabled = true
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
@@ -21,7 +21,7 @@ patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Cust
 
 # ReVanced
 [YouTube]
-enabled = false
+enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 #archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
@@ -38,7 +38,7 @@ build-mode = "module"
 
 # ReVanced Extended by anddea
 [YouTube-anddea]
-enabled = false
+enabled = true
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "anddea/revanced-patches"
@@ -54,7 +54,7 @@ excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradie
 patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom branding icon for YouTube' -OcustomIcon=xisr_yellow -OchangeSplashIcon=false -OrestoreOldSplashAnimation=true -e 'Custom header for YouTube' -OcustomHeader=hara -e 'Custom Shorts action buttons' -OiconType=cairo -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -OlightThemeBackgroundColor=@android:color/white -e 'Visual preferences icons for YouTube' -OapplyToAll=true -OsettingsMenuIcon=revanced -e 'Overlay buttons' -OiconType=bold -OwiderButtonsSpace=true -OchangeTopButtons=true -ObottomMargin=3.5dip -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'Hide shortcuts' -Oshorts=true"
 
 # Morphe
-[YouTube-Divyaa]
+[YouTube-Morphe]
 enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "MorpheApp/morphe-patches"
