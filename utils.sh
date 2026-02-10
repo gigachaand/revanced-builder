@@ -221,7 +221,7 @@ _req() {
 		mv -f "$dlp" "$op"
 	fi
 }
-req() { _req "$1" "$2" -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0"; }
+req() { _req "$1" "$2" -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:147.0) Gecko/20100101 Firefox/147.0"; }
 gh_req() { _req "$1" "$2" -H "$GH_HEADER"; }
 gh_dl() {
 	if [ ! -f "$1" ]; then
@@ -268,7 +268,7 @@ get_patch_last_supported_ver() {
 	pcount=$(head -1 <<<"$op") pcount=${pcount#*(} pcount=${pcount% *}
 	if [ -z "$pcount" ]; then
 		av_apps=$(java -jar "$cli_jar" list-versions "$patches_jar" 2>&1 | awk '/Package name:/ { printf "%s\x27%s\x27", sep, $NF; sep=", " } END { print "" }')
-		abort "No patch versions found for '$pkg_name' in this patches source!\nAvailable applications found: $av_apps";
+		abort "No patch versions found for '$pkg_name' in this patches source!\nAvailable applications found: $av_apps"
 	fi
 	grep -F "($pcount patch" <<<"$op" | sed 's/ (.* patch.*//' | get_highest_ver || return 1
 }
@@ -283,7 +283,7 @@ isoneof() {
 merge_splits() {
 	local bundle=$1 output=$2
 	pr "Merging splits"
-	gh_dl "$TEMP_DIR/apkeditor.jar" "https://github.com/REAndroid/APKEditor/releases/download/V1.4.2/APKEditor-1.4.2.jar" >/dev/null || return 1
+	gh_dl "$TEMP_DIR/apkeditor.jar" "https://github.com/REAndroid/APKEditor/releases/download/V1.4.7/APKEditor-1.4.7.jar" >/dev/null || return 1
 	if ! OP=$(java -jar "$TEMP_DIR/apkeditor.jar" merge -i "${bundle}" -o "${bundle}.mzip" -clean-meta -f 2>&1); then
 		epr "Apkeditor ERROR: $OP"
 		return 1
@@ -455,13 +455,90 @@ get_archive_resp() {
 }
 get_archive_vers() { sed 's/^[^-]*-//;s/-\(all\|arm64-v8a\|arm-v7a\)\.apk//g' <<<"$__ARCHIVE_RESP__"; }
 get_archive_pkg_name() { echo "$__ARCHIVE_PKG_NAME__"; }
+
+# -------------------- github release --------------------
+get_github_release_resp() {
+	local url="$1"
+	local repo=${url#*github.com/}
+	repo=${repo%/releases/*}
+	__GITHUB_RELEASE_REPO__="$repo"
+	__GITHUB_RELEASE_RESP__=$(gh_req "https://api.github.com/repos/$repo/releases/latest" -) || return 1
+}
+
+get_github_release_pkg_name() {
+	local assets target_app pkg_guess
+	assets=$(echo "$__GITHUB_RELEASE_RESP__" | jq -r '.assets[].name')
+	target_app="${TARGET_APP_NAME,,}"
+
+	for asset in $assets; do
+		pkg_guess=$(echo "$asset" | sed -E 's/(-|[0-9]).*//')
+		if [[ "$pkg_guess" == com.* ]]; then
+			if [[ "$target_app" == *"music"* ]] && [[ "$pkg_guess" == *"youtube.music"* ]]; then
+				echo "$pkg_guess"
+				return
+			elif [[ "$target_app" == *"youtube"* ]] && [[ "$pkg_guess" == *"youtube"* ]] && [[ "$pkg_guess" != *"music"* ]]; then
+				echo "$pkg_guess"
+				return
+			elif [[ "$pkg_guess" == *"$target_app"* ]]; then
+				echo "$pkg_guess"
+				return
+			fi
+		fi
+	done
+	return 1
+}
+
+get_github_release_vers() {
+	local assets=$(echo "$__GITHUB_RELEASE_RESP__" | jq -r '.assets[].name')
+	echo "$assets" | sed -E 's/.*-([0-9]+\.[0-9]+\.[0-9]+).*/\1/' | sort -Vu | grep '^[0-9]'
+}
+
+dl_github_release() {
+	local url=$1 version=$2 output=$3 arch=$4 dpi=$5
+	local download_url ver_clean arch_clean pkg_name
+
+	ver_clean=${version// /}
+	ver_clean=${ver_clean#v}
+
+	pkg_name=$(get_github_release_pkg_name)
+
+	if [ "$arch" = "arm64-v8a" ]; then
+		arch_clean="arm64-v8a"
+	elif [ "$arch" = "arm-v7a" ] || [ "$arch" = "armeabi-v7a" ]; then
+		arch_clean="arm-v7a"
+	else
+		arch_clean="all"
+	fi
+
+	download_url=$(echo "$__GITHUB_RELEASE_RESP__" | jq -r --arg v "$ver_clean" --arg a "$arch_clean" --arg pkg "$pkg_name" '
+		.assets[] | 
+		select(.name | contains($pkg)) |
+		select(.name | contains($v)) | 
+		select(.name | contains($a)) | 
+		.browser_download_url' | head -n 1)
+
+	if [ -z "$download_url" ] || [ "$download_url" = "null" ]; then
+		download_url=$(echo "$__GITHUB_RELEASE_RESP__" | jq -r --arg v "$ver_clean" --arg pkg "$pkg_name" '
+			.assets[] | 
+			select(.name | contains($pkg)) |
+			select(.name | contains($v)) | 
+			.browser_download_url' | head -n 1)
+	fi
+
+	if [ -n "$download_url" ] && [ "$download_url" != "null" ]; then
+		pr "Found GitHub asset: $download_url"
+		req "$download_url" "$output"
+		return 0
+	fi
+	return 1
+}
 # --------------------------------------------------
 
 patch_apk() {
 	local stock_input=$1 patched_apk=$2 patcher_args=$3 cli_jar=$4 patches_jar=$5
-	local cmd="env -u GITHUB_REPOSITORY java -jar $cli_jar patch $stock_input --purge -o $patched_apk -p $patches_jar --keystore=ks.keystore \
+	local cmd="env -u GITHUB_REPOSITORY java -jar '$cli_jar' patch '$stock_input' --purge -o '$patched_apk' -p '$patches_jar' --keystore=ks.keystore \
 --keystore-entry-password=123456789 --keystore-password=123456789 --signer=jhc --keystore-entry-alias=jhc $patcher_args"
-	if [ "$OS" = Android ]; then cmd+=" --custom-aapt2-binary=${AAPT2}"; fi
+	if [ "$OS" = Android ]; then cmd+=" --custom-aapt2-binary='${AAPT2}'"; fi
 	pr "$cmd"
 	if eval "$cmd"; then [ -f "$patched_apk" ]; else
 		rm "$patched_apk" 2>/dev/null || :
@@ -491,13 +568,15 @@ build_rv() {
 	local arch=${args[arch]}
 	local arch_f="${arch// /}"
 
+	export TARGET_APP_NAME="${args[app_name]}"
+
 	local p_patcher_args=()
 	if [ "${args[excluded_patches]}" ]; then p_patcher_args+=("$(join_args "${args[excluded_patches]}" -d)"); fi
 	if [ "${args[included_patches]}" ]; then p_patcher_args+=("$(join_args "${args[included_patches]}" -e)"); fi
 	[ "${args[exclusive_patches]}" = true ] && p_patcher_args+=("--exclusive")
 
 	local tried_dl=()
-	for dl_p in archive apkmirror uptodown; do
+	for dl_p in archive apkmirror github_release uptodown; do
 		if [ -z "${args[${dl_p}_dlurl]}" ]; then continue; fi
 		if ! get_${dl_p}_resp "${args[${dl_p}_dlurl]}" || ! pkg_name=$(get_"${dl_p}"_pkg_name); then
 			args[${dl_p}_dlurl]=""
@@ -551,7 +630,7 @@ build_rv() {
 	version_f=${version_f#v}
 	local stock_apk="${TEMP_DIR}/${pkg_name}-${version_f}-${arch_f}.apk"
 	if [ ! -f "$stock_apk" ]; then
-		for dl_p in archive apkmirror uptodown; do
+		for dl_p in archive apkmirror github_release uptodown; do
 			if [ -z "${args[${dl_p}_dlurl]}" ]; then continue; fi
 			pr "Downloading '${table}' from ${dl_p}"
 			if ! isoneof $dl_p "${tried_dl[@]}"; then get_${dl_p}_resp "${args[${dl_p}_dlurl]}"; fi
@@ -576,10 +655,10 @@ build_rv() {
 		p_patcher_args=("${p_patcher_args[@]//-[ei] ${microg_patch}/}")
 	fi
 
-	local spoof_client_patch
-	spoof_client_patch=$(grep "^Name: " <<<"$list_patches" | grep -i "Spoof Client" || :) spoof_client_patch=${spoof_client_patch#*: }
-	local spoof_video_patch
-	spoof_video_patch=$(grep "^Name: " <<<"$list_patches" | grep -i "Spoof Video" || :) spoof_video_patch=${spoof_video_patch#*: }
+	# local spoof_client_patch
+	# spoof_client_patch=$(grep "^Name: " <<<"$list_patches" | grep -i "Spoof Client" || :) spoof_client_patch=${spoof_client_patch#*: }
+	# local spoof_video_patch
+	# spoof_video_patch=$(grep "^Name: " <<<"$list_patches" | grep -i "Spoof Video" || :) spoof_video_patch=${spoof_video_patch#*: }
 
 	local patcher_args patched_apk build_mode
 	local rv_brand_f=${args[rv_brand],,}
@@ -600,12 +679,12 @@ build_rv() {
 				patcher_args+=("-d \"${microg_patch}\"")
 			fi
 		fi
-		if [ -n "$spoof_client_patch" ] && [[ ! ${p_patcher_args[*]} =~ $spoof_client_patch ]] && [ "$build_mode" = module ]; then
-			patcher_args+=("-d \"${spoof_client_patch}\"")
-		fi
-		if [ -n "$spoof_video_patch" ] && [[ ! ${p_patcher_args[*]} =~ $spoof_video_patch ]] && [ "$build_mode" = module ]; then
-			patcher_args+=("-d \"${spoof_video_patch}\"")
-		fi
+		# if [ -n "$spoof_client_patch" ] && [[ ! ${p_patcher_args[*]} =~ $spoof_client_patch ]] && [ "$build_mode" = module ]; then
+		# 	patcher_args+=("-d \"${spoof_client_patch}\"")
+		# fi
+		# if [ -n "$spoof_video_patch" ] && [[ ! ${p_patcher_args[*]} =~ $spoof_video_patch ]] && [ "$build_mode" = module ]; then
+		# 	patcher_args+=("-d \"${spoof_video_patch}\"")
+		# fi
 		if [ "${args[riplib]}" = true ]; then
 			patcher_args+=("--rip-lib x86_64 --rip-lib x86")
 			if [ "$build_mode" = module ]; then
