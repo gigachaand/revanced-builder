@@ -1,6 +1,6 @@
 {
-  "version": "21.05.265 (patches 1.12.0.mpp)",
-  "versionCode": 28,
-  "zipUrl": "https://github.com/gigachaand/revanced-builder/releases/download/28/youtube-morphe-revanced-magisk-v21.05.265-arm64-v8a.zip",
+  "version": "21.05.265 (patches 1.13.0.mpp)",
+  "versionCode": 29,
+  "zipUrl": "https://github.com/gigachaand/revanced-builder/releases/download/29/youtube-morphe-revanced-magisk-v21.05.265-arm64-v8a.zip",
   "changelog": "https://raw.githubusercontent.com/gigachaand/revanced-builder/update/build.md"
 }
