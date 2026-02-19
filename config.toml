@@ -1,6 +1,4 @@
 enable-magisk-update = true
-parallel-jobs = 1
-remove-rv-integrations-checks = true
 
 # ReVanced Extended
 [YouTube-Extended]
@@ -28,7 +26,7 @@ uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 #cli-source = "Graywizard888/Enhancify-cli-v21"
 #cli-version = "V2.0.0-beta"
 #patches-version = "dev"
-version = "20.15.38"
+version = "20.15.40"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Hide timestamp' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "module"
@@ -66,5 +64,3 @@ version = "latest"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Disable resuming Shorts on startup' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
 build-mode = "module"
-arch = "arm64-v8a"
-riplib = true
