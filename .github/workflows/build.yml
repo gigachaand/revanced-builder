@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-java@v5
         with:
           distribution: "zulu"
-          java-version: "17"
+          java-version: "21"
 
       - name: Checkout
         uses: actions/checkout@v6
@@ -34,7 +34,7 @@ jobs:
               echo "$UPDATE_CFG" > config.json
             fi
           fi
-      
+
       - name: Get next version code
         id: next_ver_code
         env:
@@ -71,7 +71,7 @@ jobs:
           file_glob: true
           overwrite: true
 
-      - name: Update changelog and Magisk update json
+      - name: Update changelog and update json
         id: update_config
         run: |
           git checkout -f update || git switch --discard-changes --orphan update
@@ -107,7 +107,7 @@ jobs:
           file_pattern: build.md *-update.json
           commit_message: Bump version ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           commit_options: '--signoff'
-          commit_author: gigachaand <arunmondal9286@gmail.com>
+          commit_author: peternmuller <pm563838@gmail.com>
 
       - name: Report to Telegram
         env:
@@ -146,7 +146,7 @@ jobs:
           *By @gigachaand*
 
           *🌟 Check out my builder source:*
-          https://github.com/gigachaand/revanced-builder
+          https://github.com/gigachaand/revanced-magisk-builder
           "
           echo "'$MSG'"
           MSG=${MSG:0:9450}
