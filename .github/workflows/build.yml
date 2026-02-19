@@ -146,7 +146,7 @@ jobs:
           *By @gigachaand*
 
           *🌟 Check out my builder source:*
-          https://github.com/gigachaand/revanced-magisk-builder
+          https://github.com/gigachaand/revanced-builder
           "
           echo "'$MSG'"
           MSG=${MSG:0:9450}
