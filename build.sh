@@ -41,16 +41,16 @@ if [ "${2-}" = "--config-update" ]; then
 fi
 
 : >build.md
-ENABLE_MAGISK_UPDATE=$(toml_get "$main_config_t" enable-magisk-update) || ENABLE_MAGISK_UPDATE=true
-if [ "$ENABLE_MAGISK_UPDATE" = true ] && [ -z "${GITHUB_REPOSITORY-}" ]; then
+ENABLE_MODULE_UPDATE=$(toml_get "$main_config_t" enable-module-update) || ENABLE_MODULE_UPDATE=true
+if [ "$ENABLE_MODULE_UPDATE" = true ] && [ -z "${GITHUB_REPOSITORY-}" ]; then
 	pr "You are building locally. Module updates will not be enabled."
-	ENABLE_MAGISK_UPDATE=false
+	ENABLE_MODULE_UPDATE=false
 fi
 if ((COMPRESSION_LEVEL > 9)) || ((COMPRESSION_LEVEL < 0)); then abort "compression-level must be within 0-9"; fi
 
-rm -rf revanced-magisk/bin/*/tmp.*
+rm -rf module/bin/*/tmp.*
 for file in "$TEMP_DIR"/*/changelog.md; do
-    [ -f "$file" ] && : > "$file"
+	[ -f "$file" ] && : >"$file"
 done
 
 mkdir -p ${MODULE_TEMPLATE_DIR}/bin/arm64 ${MODULE_TEMPLATE_DIR}/bin/arm ${MODULE_TEMPLATE_DIR}/bin/x86 ${MODULE_TEMPLATE_DIR}/bin/x64
@@ -99,34 +99,20 @@ for table_name in $(toml_get_table_names); do
 			abort "ERROR: build-mode '${app_args[build_mode]}' is not a valid option for '${table_name}': only 'both', 'apk' or 'module' is allowed"
 		fi
 	} || app_args[build_mode]=apk
-	app_args[uptodown_dlurl]=$(toml_get "$t" uptodown-dlurl) && {
-		app_args[uptodown_dlurl]=${app_args[uptodown_dlurl]%/}
-		app_args[uptodown_dlurl]=${app_args[uptodown_dlurl]%download}
-		app_args[uptodown_dlurl]=${app_args[uptodown_dlurl]%/}
-		app_args[dl_from]=uptodown
-	} || app_args[uptodown_dlurl]=""
-	app_args[apkmirror_dlurl]=$(toml_get "$t" apkmirror-dlurl) && {
-		app_args[apkmirror_dlurl]=${app_args[apkmirror_dlurl]%/}
-		app_args[dl_from]=apkmirror
-	} || app_args[apkmirror_dlurl]=""
-	app_args[archive_dlurl]=$(toml_get "$t" archive-dlurl) && {
-		app_args[archive_dlurl]=${app_args[archive_dlurl]%/}
-		app_args[dl_from]=archive
-	} || app_args[archive_dlurl]=""
-	if [ -z "${app_args[dl_from]-}" ]; then abort "ERROR: no 'apkmirror_dlurl', 'uptodown_dlurl' or 'archive_dlurl' option was set for '$table_name'."; fi
-	app_args[arch]=$(toml_get "$t" arch) || app_args[arch]="all"
-	if [ "${app_args[arch]}" != "both" ] && [ "${app_args[arch]}" != "all" ] && [[ ${app_args[arch]} != "arm64-v8a"* ]] && [[ ${app_args[arch]} != "arm-v7a"* ]]; then
-		abort "wrong arch '${app_args[arch]}' for '$table_name'"
-	fi
 
-	# Added GitHub Release parsing
-	app_args[github_release_dlurl]=$(toml_get "$t" github-release-dlurl) && {
-		app_args[dl_from]=github_release
-	} || app_args[github_release_dlurl]=""
-
-	if [ -z "${app_args[dl_from]-}" ]; then abort "ERROR: no 'github_release_dlurl', 'apkmirror_dlurl', 'uptodown_dlurl' or 'archive_dlurl' option was set for '$table_name'."; fi
+	for dl_from in "direct" "uptodown" "apkmirror" "archive"; do
+		if app_args[${dl_from}_dlurl]=$(toml_get "$t" ${dl_from}-dlurl); then
+			app_args[${dl_from}_dlurl]=${app_args[${dl_from}_dlurl]%/}
+			app_args[${dl_from}_dlurl]=${app_args[${dl_from}_dlurl]%download}
+			app_args[${dl_from}_dlurl]=${app_args[${dl_from}_dlurl]%/}
+			app_args[dl_from]=${dl_from}
+		else
+			app_args[${dl_from}_dlurl]=""
+		fi
+	done
+	if [ -z "${app_args[dl_from]-}" ]; then abort "ERROR: no 'apkmirror-dlurl', 'uptodown-dlurl' or 'archive-dlurl' option was set for '$table_name'."; fi
 	app_args[arch]=$(toml_get "$t" arch) || app_args[arch]="all"
-	if [ "${app_args[arch]}" != "both" ] && [ "${app_args[arch]}" != "all" ] && [[ ${app_args[arch]} != "arm64-v8a"* ]] && [[ ${app_args[arch]} != "arm-v7a"* ]]; then
+	if ! isoneof "${app_args[arch]}" "both" "all" "arm64-v8a" "arm-v7a" "x86_64" "x86"; then
 		abort "wrong arch '${app_args[arch]}' for '$table_name'"
 	fi
 
@@ -134,7 +120,7 @@ for table_name in $(toml_get_table_names); do
 	app_args[dpi]=$(toml_get "$t" dpi) || app_args[dpi]="$DEF_DPI_LIST"
 	table_name_f=${table_name,,}
 	table_name_f=${table_name_f// /-}
-	app_args[module_prop_name]=$(toml_get "$t" module-prop-name) || app_args[module_prop_name]="${table_name_f}-gigachaand"
+	app_args[module_prop_name]=$(toml_get "$t" module-prop-name) || app_args[module_prop_name]="${table_name_f}-peternmuller"
 
 	if [ "${app_args[arch]}" = both ]; then
 		app_args[table]="$table_name (arm64-v8a)"
@@ -166,7 +152,7 @@ wait
 rm -rf temp/tmp.*
 if [ -z "$(ls -A1 "${BUILD_DIR}")" ]; then abort "All builds failed."; fi
 
-log "\nInstall [ReVanced GmsCore](https://github.com/ReVanced/GmsCore/releases/latest) or [Morphe MicroG-RE](https://github.com/MorpheApp/MicroG-RE) for non-root YouTube and YouTube Music APKs"
+log "\nInstall [ReVanced GmsCore](https://github.com/ReVanced/GmsCore/releases/latest) or [Morphe MicroG-RE](https://github.com/MorpheApp/MicroG-RE/releases/latest) for non-root YouTube and YouTube Music APKs"
 log "(Optional) Use [zygisk-detach](https://github.com/j-hc/zygisk-detach/releases/latest) to detach YouTube and YouTube Music modules from the Play Store\n"
 log "$(cat "$TEMP_DIR"/*/changelog.md)"
 
