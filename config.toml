@@ -54,11 +54,11 @@ patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Cust
 # Morphe
 [YouTube-Morphe]
 enabled = true
-#apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
+apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 patches-source = "MorpheApp/morphe-patches"
 cli-source = "MorpheApp/morphe-cli"
-cli-version = "dev"
+#cli-version = "dev"
 version = "latest"
 #rv-brand = ""
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Disable resuming Shorts on startup' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Check watch history domain name resolution'"
