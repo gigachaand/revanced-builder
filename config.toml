@@ -4,6 +4,7 @@ enable-magisk-update = true
 [YouTube-Extended]
 enabled = true
 app-name = "YouTube"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 patches-source = "wchill/rvx-morphed"
@@ -56,7 +57,7 @@ build-mode = "module"
 # Morphe
 [YouTube-Divyaa]
 enabled = true
-apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtub"eapkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 patches-source = "MorpheApp/morphe-patches"
 cli-source = "MorpheApp/morphe-cli"
