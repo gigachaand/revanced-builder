@@ -54,7 +54,7 @@ patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideS
 build-mode = "module"
 
 # Morphe
-[YouTube-Morphe]
+[YouTube-Divyaa]
 enabled = true
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
