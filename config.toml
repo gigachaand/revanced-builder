@@ -2,7 +2,7 @@ enable-magisk-update = true
 
 # ReVanced Extended
 [YouTube-Extended]
-enabled = true
+enabled = false
 app-name = "YouTube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
