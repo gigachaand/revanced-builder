@@ -8,12 +8,12 @@ apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 patches-source = "wchill/rvx-morphed"
 cli-source = "MorpheApp/morphe-cli"
-version = "20.21.37"
+version = "20.05.46"
 rv-brand = "Morphe Extended"
 build-mode = "apk"
 included-patches = "'Hide Shorts dimming' 'Force hide player buttons background' 'MaterialYou'"
 excluded-patches = "'Alternative thumbnails' 'Change form factor' 'Enable gradient loading screen' 'Translations for YouTube' 'Spoof app version' 'Disable layout updates' 'Enable debug logging' 'Disable sign in to TV popup' 'Spoof watch history'"
-patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom branding icon for YouTube' -OchangeSplashIcon=false -OrestoreOldSplashAnimation=true -e 'Custom header for YouTube' -OcustomHeader=hara -e 'Custom Shorts action buttons' -OiconType=cairo -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -OlightThemeBackgroundColor=@android:color/white -e 'Visual preferences icons for YouTube' -OapplyToAll=true -OsettingsMenuIcon=revanced -e 'Overlay buttons' -OiconType=bold -OwiderButtonsSpace=true -OchangeTopButtons=true -ObottomMargin=3.5dip -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'Hide shortcuts' -Oshorts=true"
+patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Custom branding icon for YouTube' -OchangeSplashIcon=false -OrestoreOldSplashAnimation=true -e 'Custom header for YouTube' -OcustomHeader=hara -e 'Custom Shorts action buttons' -OiconType=cairo -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black -OlightThemeBackgroundColor=@android:color/white -e 'Visual preferences icons for YouTube' -OapplyToAll=true -OsettingsMenuIcon=gear -e 'Overlay buttons' -OiconType=bold -OwiderButtonsSpace=true -OchangeTopButtons=true -ObottomMargin=3.5dip -e 'Settings for YouTube' -OrvxSettingsLabel=Extended -e 'Hide shortcuts' -Oshorts=true"
 
 # ReVanced
 [YouTube]
