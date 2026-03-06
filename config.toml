@@ -1,4 +1,4 @@
-enable images K-Y = false
+enable-magisk-update = false
 
 # ReVanced Extended
 [YouTube-Extended]
