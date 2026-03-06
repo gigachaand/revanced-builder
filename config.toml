@@ -23,7 +23,7 @@ direct-dlurl = "https://github.com/gigachaand/YouTube-apk/releases/latest"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 #uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 #archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
-version = 20.15.40
+version = "20.15.40"
 cli-source = "revanced/revanced-cli"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Hide timestamp' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
