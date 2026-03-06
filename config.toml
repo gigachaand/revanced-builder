@@ -1,8 +1,8 @@
-enable-magisk-update = true
+enable-magisk-update = false
 
 # ReVanced Extended
 [YouTube-Extended]
-enabled = true
+enabled = false
 app-name = "YouTube"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
@@ -18,7 +18,7 @@ patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Cust
 
 # ReVanced
 [YouTube]
-enabled = true
+enabled = false
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
@@ -49,7 +49,9 @@ apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 patches-source = "MorpheApp/morphe-patches"
 cli-source = "MorpheApp/morphe-cli"
-version = "latest"
-excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Disable resuming Shorts on startup' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Check watch history domain name resolution'"
+cli-version = "dev"
+patches-version = "v1.16"
+version = "21.09.70"
+excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Disable resuming Shorts on startup' 'Enable debugging' 'Spoof device dimensions' 'Spoof video streams' 'Disable sign in to TV popup' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
-build-mode = "both"
+build-mode = "module"
