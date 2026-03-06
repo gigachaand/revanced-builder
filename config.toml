@@ -19,8 +19,8 @@ patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Cust
 # ReVanced
 [YouTube]
 enabled = true
-direct-dlurl = "https://github.com/gigachaand/YouTube-apk/releases/latest"
-apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
+direct-dlurl = "https://github.com/gigachaand/YouTube-apk/releases/download/20.15.40/com.google.android.youtube_20.15.40-1553991104_minAPI26.arm64-v8a.armeabi-v7a.x86.x86_64.nodpi._apkmirror.com.apk"
+#apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 #uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 #archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 version = "20.15.40"
