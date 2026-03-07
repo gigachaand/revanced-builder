@@ -2,7 +2,7 @@ enable-magisk-update = true
 
 # ReVanced Extended
 [YouTube-Extended]
-enabled = false
+enabled = true
 app-name = "YouTube"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
@@ -19,11 +19,9 @@ patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Cust
 # ReVanced
 [YouTube]
 enabled = true
-direct-dlurl = "https://github.com/gigachaand/YouTube-apk/releases/download/20.15.40/com.google.android.youtube_20.15.40-1553991104_minAPI26.arm64-v8a.armeabi-v7a.x86.x86_64.nodpi._apkmirror.com.apk"
-#apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
-#uptodown-dlurl = "https://youtube.en.uptodown.com/android"
-#archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
-version = "20.15.40"
+apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
+uptodown-dlurl = "https://youtube.en.uptodown.com/android"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 cli-source = "revanced/revanced-cli"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Spoof video streams' 'Hide timestamp' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
@@ -47,11 +45,12 @@ patcher-args = "-e 'Custom branding name for YouTube' -OappName=RexTube -e 'Cust
 # Morphe
 [YouTube-Morphe]
 enabled = false
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 patches-source = "MorpheApp/morphe-patches"
 cli-source = "MorpheApp/morphe-cli"
-version = "latest"
+#version = "latest"
 excluded-patches = "'Change form factor' 'Spoof app version' 'Alternative thumbnails' 'Disable resuming Shorts on startup' 'Enable debugging' 'Spoof device dimensions' 'Disable sign in to TV popup' 'Check watch history domain name resolution'"
 patcher-args = "-e 'Hide Shorts components' -OhideShortsAppShortcut=true -OhideShortsWidget=true -e 'Theme' -OdarkThemeBackgroundColor=@android:color/black"
-build-mode = "both"
+build-mode = "apk"
